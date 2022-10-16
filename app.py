@@ -78,6 +78,9 @@ def comp(to, have):
     for not_us in to:
         left_to_buy = not_us[2] * weights[not_us[1]]
         name = not_us[0]
+        if len(have) - len(to) > 4:
+            #if a lot of stuff, ignore cheap options
+            return 1000000
         for us in have:
             if same_ing(us["name"], name):
                 left_to_buy -= int(us["quantity"]) * weights[us["unit"]]
@@ -114,8 +117,8 @@ def find_closest(have):
             'name': recipes_d[all_entries[i][0]][0],
             'url': recipes_d[all_entries[i][0]][1],
             'instructions': recipes_d[all_entries[i][0]][2],
-            'ingredients': all_entries[i][1], #name, unit, quanitty
-            'cost': comp(all_entries[i][1], have)
+            'ingredients': all_entries[i][1] #name, unit, quanitty
+            # 'cost': comp(all_entries[i][1], have)
             })
     return return_arr
 
