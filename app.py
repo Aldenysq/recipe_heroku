@@ -9,6 +9,7 @@ conn = psycopg2.connect(url)
 c = conn.cursor()
 
 def similar(full, typed):
+    print(typed, full)
     return typed in full 
 
 def find_similar_name(name, value):
@@ -19,7 +20,7 @@ def find_similar_name(name, value):
     records = c.fetchall()
     all_names = [r[0] for r in records]
     for n in all_names:
-        if similar(n, value):
+        if n and similar(n, value):
             ingredients.append(n)
     return {"ingredients" : ingredients}
     
