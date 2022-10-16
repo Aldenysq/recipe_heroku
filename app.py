@@ -75,12 +75,14 @@ from random import randrange
 def comp(to, have):
     cost = 0
     has_similar = 0
+    if len(have)  >= len(to) * 2:
+        #if a lot of stuff, ignore cheap options
+        return 1000000
     for not_us in to:
         left_to_buy = not_us[2] * weights[not_us[1]]
         name = not_us[0]
-        if len(have)  >= len(to) * 2:
-            #if a lot of stuff, ignore cheap options
-            return 1000000
+        if "water" in name:
+            continue
         for us in have:
             if same_ing(us["name"], name):
                 left_to_buy -= int(us["quantity"]) * weights[us["unit"]]
