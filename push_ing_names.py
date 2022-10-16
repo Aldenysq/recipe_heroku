@@ -4,7 +4,7 @@ import sqlite3
 
 
 import json
-f = open('parsed_recipes_1.json')
+f = open('parsed_recipes_2.json')
 data = json.load(f)
 names = set()
 for e in data:
@@ -14,7 +14,8 @@ for e in data:
 names = list(names)
 
 import sqlite3
-conn = psycopg2.connect(os.environ["DATABASE_URL"])
+url = "postgresql://jelani:NRuQTD22a3wc42z1j_cLdw@free-tier4.aws-us-west-2.cockroachlabs.cloud:26257/ingredients?sslmode=verify-full&options=--cluster%3Dhunter-codfish-3992&sslrootcert=root.crt"
+conn = psycopg2.connect(url)
 c = conn.cursor()
 
 c.execute('DROP TABLE ingredients')
