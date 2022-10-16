@@ -70,16 +70,22 @@ weights = {
 def same_ing(name1, name2):
     return name1 in name2 or name1[:-1] in name2 #account for plurals
 
+from random import randrange
+
 def comp(to, have):
     cost = 0
+    has_similar = 0
     for not_us in to:
         left_to_buy = not_us[2] * weights[not_us[1]]
         name = not_us[0]
         for us in have:
             if same_ing(us["name"], name):
                 left_to_buy -= int(us["quantity"]) * weights[us["unit"]]
+                has_similar += 1
         left_to_buy = max(left_to_buy, 0)
         cost += left_to_buy
+    cost -= has_similar * 2
+    cost += randrange(-2, 3)
     return cost
 
 def find_closest(have):
@@ -108,7 +114,8 @@ def find_closest(have):
             'name': recipes_d[all_entries[i][0]][0],
             'url': recipes_d[all_entries[i][0]][1],
             'instructions': recipes_d[all_entries[i][0]][2],
-            'ingredients': all_entries[i][1] #name, unit, quanitty
+            'ingredients': all_entries[i][1], #name, unit, quanitty
+            'cost': comp(all_entries[i][1], have)
             })
     return return_arr
 
