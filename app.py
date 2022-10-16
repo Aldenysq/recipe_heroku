@@ -5,7 +5,8 @@ import sqlite3
 import os
 
 app = Flask(__name__)
-conn = psycopg2.connect(os.environ["DATABASE_URL"])
+url = "postgresql://jelani:NRuQTD22a3wc42z1j_cLdw@free-tier4.aws-us-west-2.cockroachlabs.cloud:26257/ingredients?sslmode=verify-full&options=--cluster%3Dhunter-codfish-3992"
+conn = psycopg2.connect(url)
 c = conn.cursor()
 
 def similar(full, typed):
