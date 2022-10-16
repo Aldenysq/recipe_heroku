@@ -78,7 +78,7 @@ def comp(to, have):
     for not_us in to:
         left_to_buy = not_us[2] * weights[not_us[1]]
         name = not_us[0]
-        if len(have) - len(to) > 4:
+        if len(have)  >= len(to) * 2:
             #if a lot of stuff, ignore cheap options
             return 1000000
         for us in have:
@@ -87,7 +87,7 @@ def comp(to, have):
                 has_similar += 1
         left_to_buy = max(left_to_buy, 0)
         cost += left_to_buy
-    cost -= has_similar * 2
+    cost += 2*(len(to) - has_similar)
     cost += randrange(-2, 3)
     return cost
 
