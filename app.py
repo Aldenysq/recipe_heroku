@@ -5,7 +5,7 @@ import sqlite3
 import os
 
 app = Flask(__name__)
-url = "postgresql://jelani:NRuQTD22a3wc42z1j_cLdw@free-tier4.aws-us-west-2.cockroachlabs.cloud:26257/ingredients?sslmode=verify-full&options=--cluster%3Dhunter-codfish-3992"
+url = "postgresql://jelani:NRuQTD22a3wc42z1j_cLdw@free-tier4.aws-us-west-2.cockroachlabs.cloud:26257/ingredients?sslmode=verify-full&options=--cluster%3Dhunter-codfish-3992&sslrootcert=root.crt"
 conn = psycopg2.connect(url)
 c = conn.cursor()
 
