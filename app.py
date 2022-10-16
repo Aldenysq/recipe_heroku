@@ -89,7 +89,7 @@ def comp(to, have):
                 has_similar += 1
         left_to_buy = max(left_to_buy, 0)
         cost += left_to_buy
-    cost -= len(to) * 0.03 + has_similar * 2
+    cost -= len(to) * 0.03 + has_similar * 4
     cost += randrange(-2, 3)
     return cost
 
